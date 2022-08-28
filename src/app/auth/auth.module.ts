@@ -9,6 +9,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 import { RegisterComponent } from "src/app/auth/components/register/register.component";
 import { LoginComponent } from "src/app/auth/components/login/login.component";
 import { reducers } from "src/app/auth/store/reducers";
+import { FetchUserEffect } from 'src/app/auth/store/effects/fetchUser.effect';
 import { RegisterEffect } from 'src/app/auth/store/effects/register.effect';
 import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
 import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
@@ -39,6 +40,7 @@ const components = [
     RouterModule.forChild(routes),
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([
+      FetchUserEffect,
       RegisterEffect,
       LoginEffect
     ]),

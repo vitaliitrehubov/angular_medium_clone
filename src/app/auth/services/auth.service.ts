@@ -17,7 +17,7 @@ export class AuthService {
   register(data: RegisterRequestInterface): Observable<UserInterface> {
     return this.http
       .post<AuthResponseInterface>(environment.apiUrlRegister, data)
-      .pipe(map(this.retrieveUser));
+      .pipe(map(this.retrieveUser))
   }
 
   login(data: LoginRequestInterface): Observable<UserInterface> {
@@ -26,8 +26,14 @@ export class AuthService {
       .pipe(map(this.retrieveUser))
   }
 
+  fetchUser(): Observable<UserInterface> {
+    return this.http
+      .get<AuthResponseInterface>(environment.apiUrlUser)
+      .pipe(map(this.retrieveUser))
+  }
+
   retrieveUser({ user }: AuthResponseInterface): UserInterface {
-    return user;
+    return user
   }
 }
 

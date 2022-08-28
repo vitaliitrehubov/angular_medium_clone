@@ -5,6 +5,10 @@ export enum ActionTypes {
 
   LOGIN_START = '[Auth] Login Start',
   LOGIN_SUCCESS = '[Auth] Login Success',
-  LOGIN_FAILURE = '[Auth] Login Failure'
+  LOGIN_FAILURE = '[Auth] Login Failure',
+
+  FETCH_USER_START = '[Auth] Fetch User Start',
+  FETCH_USER_SUCCESS = '[Auth] Fetch Use Success',
+  FETCH_USER_FAILURE = '[Auth] Fetch Use Failure'
 }
 

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PersistanceService {
 
   set(key: string, value: any): void {
