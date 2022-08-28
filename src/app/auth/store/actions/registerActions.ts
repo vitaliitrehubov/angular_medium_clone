@@ -16,5 +16,6 @@ export const registerSuccessAction = createAction(
 
 export const registerFailureAction = createAction(
   ActionTypes.REGISTER_FAILURE,
+  props<{ errors: string[] }>()
 );
 

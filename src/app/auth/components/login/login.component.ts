@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { registerStartAction } from 'src/app/auth/store/actions/registerActions';
-import * as selectors from 'src/app/auth/store/selectors';
+import { loginStartAction } from 'src/app/auth/store/actions/login.actions';
 import { RegisterRequestInterface } from 'src/app/auth/types/registerRequest.interface';
+import * as selectors from 'src/app/auth/store/selectors';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
   isSubmitting$: Observable<boolean>;
   backendValidationErrors$: Observable<string[] | null>;
 
@@ -29,18 +29,16 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     const request: RegisterRequestInterface = {
-      user: this.registerForm.value
-    }
+      user: this.loginForm.value
+    };
 
-    this.store.dispatch(registerStartAction({ request }));
-    console.log('form: ', this.registerForm);
+    this.store.dispatch(loginStartAction({ request }));
   }
 
   initializeForm() {
-    this.registerForm = this.fb.group({
-      'username': ['', [Validators.required]],
+    this.loginForm = this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
-      'password': ['', [Validators.minLength(6), Validators.maxLength(20), Validators.required]]
+      'password': ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -54,3 +52,4 @@ export class RegisterComponent implements OnInit {
     );
   }
 }
+

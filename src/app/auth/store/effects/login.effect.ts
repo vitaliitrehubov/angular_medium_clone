@@ -1,34 +1,34 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from "@angular/common/http";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from 'rxjs';
-import { switchMap, catchError, map, tap } from "rxjs/operators";
+import { map, switchMap, tap, catchError } from 'rxjs/operators';
 
-import * as registerActions from 'src/app/auth/store/actions/registerActions';
+import * as loginActions from 'src/app/auth/store/actions/login.actions';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { UserInterface } from "src/app/shared/types/user.interface";
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
+import { UserInterface } from 'src/app/shared/types/user.interface';
 import { retrieveErrors } from 'src/app/auth/utils/retrieveErrors';
 
 @Injectable()
-export class RegisterEffect {
-  register$ = createEffect(
+export class LoginEffect {
+  login$ = createEffect(
     () => this.actions$.pipe(
-      ofType(registerActions.registerStartAction),
+      ofType(loginActions.loginStartAction),
       switchMap(({ request }) =>
         this.authService
-          .register(request)
+          .login(request)
           .pipe(
             map((user: UserInterface) => {
               this.persistanceService.set('token', user.token);
 
-              return registerActions.registerSuccessAction({ user })
+              return loginActions.loginSuccessAction({ user });
             }),
             catchError((errorResponse: HttpErrorResponse) => {
               const errors = retrieveErrors(errorResponse);
 
-              return of(registerActions.registerFailureAction({ errors }));
+              return of(loginActions.loginFailureAction({ errors }));
             })
           )
       )
@@ -37,7 +37,7 @@ export class RegisterEffect {
 
   redirect$ = createEffect(
     () => this.actions$.pipe(
-      ofType(registerActions.registerSuccessAction),
+      ofType(loginActions.loginSuccessAction),
       tap(() => this.router.navigateByUrl('/'))
     ),
     { dispatch: false }

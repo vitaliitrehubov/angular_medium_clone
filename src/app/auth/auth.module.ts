@@ -7,18 +7,27 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AuthService } from "src/app/auth/services/auth.service";
 import { RegisterComponent } from "src/app/auth/components/register/register.component";
+import { LoginComponent } from "src/app/auth/components/login/login.component";
 import { reducers } from "src/app/auth/store/reducers";
 import { RegisterEffect } from 'src/app/auth/store/effects/register.effect';
+import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
+import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
 
 const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
 const components = [
-  RegisterComponent
+  RegisterComponent,
+  LoginComponent
 ];
 
 @NgModule({
@@ -29,9 +38,15 @@ const components = [
     FormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect])
+    EffectsModule.forFeature([
+      RegisterEffect,
+      LoginEffect
+    ]),
+
+    BackendErrorMessagesModule
   ],
   exports: components,
-  providers: [AuthService]
+  providers: [AuthService, PersistanceService]
 })
 export class AuthModule {}
+

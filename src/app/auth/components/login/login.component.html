@@ -2,9 +2,9 @@
   <div class="container page">
     <div class="row">
       <div class="col-md-6 offset-md-3 col-xs-12">
-        <h1 class="text-xs-center">Sign Up</h1>
+        <h1 class="text-xs-center">Sign In</h1>
         <p class="text-xs-center">
-          <a [routerLink]="['/login']">Already have an account? Log In.</a>
+          <a [routerLink]="['/register']">Or register an account.</a>
         </p>
 
         <app-backend-error-messages
@@ -12,16 +12,7 @@
           [errors]="backendValidationErrors$ | async"
         ></app-backend-error-messages>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-          <div class="form-group">
-            <input
-              type="text"
-              name="username"
-              class="form-control form-control-lg"
-              formControlName="username"
-              placeholder="Username"
-            />
-          </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
           <div class="form-group">
             <input
               type="email"
@@ -44,7 +35,7 @@
             <button
               type="submit"
               class="btn btn-lg btn-primary pull-xs-right"
-              [disabled]="registerForm.invalid || (isSubmitting$ | async)"
+              [disabled]="loginForm.invalid || (isSubmitting$ | async)"
             >Sign Up</button>
           </div>
         </form>
@@ -52,3 +43,4 @@
     </div>
   </div>
 </div>
+
