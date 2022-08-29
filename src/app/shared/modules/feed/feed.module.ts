@@ -8,6 +8,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { ErrorMessageModule } from 'src/app/shared/modules/errorMessage/errorMessage.module';
 import { LoadingModule } from 'src/app/shared/modules/loading/loading.module';
 import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
+import { TagListModule } from "src/app/shared/modules/tagList/tagList.module";
 
 import { FetchFeedEffect } from 'src/app/shared/modules/feed/store/effects/fetchFeed.effect';
 import { FeedComponent } from './components/feed/feed.component';
@@ -28,7 +29,8 @@ import { reducers } from 'src/app/shared/modules/feed/store/reducers';
 
     ErrorMessageModule,
     LoadingModule,
-    PaginationModule
+    PaginationModule,
+    TagListModule
   ],
   exports: [FeedComponent],
   providers: [FeedService]

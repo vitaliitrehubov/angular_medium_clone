@@ -25,7 +25,8 @@
       <h5>{{ article.title }}</h5>
       <p>{{ article.description }}</p>
       <span>Read more...</span>
-      LIST OF TAGS
+
+      <app-tag-list [tags]="article.tagList"></app-tag-list>
     </a>
   </li>
 </ul>
