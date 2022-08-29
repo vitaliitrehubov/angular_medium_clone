@@ -6,10 +6,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { AppComponent } from 'src/app/app.component';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { TopBarModule } from 'src/app/shared/modules/topBar/topBar.module';
+import { GlobalFeedModule } from 'src/app/globalFeed/globalFeed.module';
+
 import { environment } from 'src/environments/environment';
+import { AppComponent } from 'src/app/app.component';
 import { AuthInterceptor } from 'src/app/shared/services/authInterceptor.service';
 
 @NgModule({
@@ -28,7 +30,8 @@ import { AuthInterceptor } from 'src/app/shared/services/authInterceptor.service
 
     AppRoutingModule,
     AuthModule,
-    TopBarModule
+    TopBarModule,
+    GlobalFeedModule
   ],
   providers: [
     {

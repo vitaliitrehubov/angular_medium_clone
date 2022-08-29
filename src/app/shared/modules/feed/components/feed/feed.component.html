@@ -1,0 +1,30 @@
+<h4 *ngIf="isLoading$ | async">Loading...</h4>
+<ul *ngIf="feed$ | async">
+  <li *ngFor="let article of (feed$ | async)?.articles" class="article-preview">
+    <article class="article-meta">
+      <a [routerLink]="['/profiles', article.author.username]">
+        <img
+          [src]="article.author.image"
+          [alt]="article.author.username + ' profile image'"
+        />
+      </a>
+      <section class="info">
+        <a [routerLink]="['/profiles', article.author.username]">
+          {{ article.author.username}}
+        </a>
+        <span class="date">{{ article.createdAt }}</span>
+      </section>
+      <div class="pull-xs-right">
+        ADD TO FAVORITES
+      </div>
+    </article>
+
+    <a [routerLink]="['/articles', article.slug]" class="preview-link">
+      <h5>{{ article.title }}</h5>
+      <p>{{ article.description }}</p>
+      <span>Read more...</span>
+      LIST OF TAGS
+    </a>
+  </li>
+</ul>
+PAGINATION...

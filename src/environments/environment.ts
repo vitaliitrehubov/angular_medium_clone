@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiUrl: 'https://conduit.productionready.io/api',
   apiUrlUser: 'https://conduit.productionready.io/api/user',
+  apiUrlArticles: 'https://conduit.productionready.io/api/articles',
   apiUrlRegister: 'https://conduit.productionready.io/api/users',
   apiUrlLogin: 'https://conduit.productionready.io/api/users/login',
 };
