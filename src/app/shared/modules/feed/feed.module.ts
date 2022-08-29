@@ -5,17 +5,18 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from "@ngrx/effects";
 
+import { ErrorMessageModule } from 'src/app/shared/modules/errorMessage/errorMessage.module';
+import { LoadingModule } from 'src/app/shared/modules/loading/loading.module';
+import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
+
 import { FetchFeedEffect } from 'src/app/shared/modules/feed/store/effects/fetchFeed.effect';
 import { FeedComponent } from './components/feed/feed.component';
 import { FeedService } from "src/app/shared/modules/feed/services/feed.service";
 import { reducers } from 'src/app/shared/modules/feed/store/reducers';
 
-const components = [
-  FeedComponent
-];
 
 @NgModule({
-  declarations: components,
+  declarations: [FeedComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -23,9 +24,13 @@ const components = [
     StoreModule.forFeature('feed', reducers),
     EffectsModule.forFeature([
       FetchFeedEffect
-    ])
+    ]),
+
+    ErrorMessageModule,
+    LoadingModule,
+    PaginationModule
   ],
-  exports: components,
+  exports: [FeedComponent],
   providers: [FeedService]
 })
 export class FeedModule { }

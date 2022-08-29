@@ -1,4 +1,8 @@
-<h4 *ngIf="isLoading$ | async">Loading...</h4>
+<app-loading *ngIf="isLoading$ | async"></app-loading>
+
+<error-message *ngIf="error$ | async" [message]="error$ | async">
+</error-message>
+
 <ul *ngIf="feed$ | async">
   <li *ngFor="let article of (feed$ | async)?.articles" class="article-preview">
     <article class="article-meta">
@@ -10,13 +14,11 @@
       </a>
       <section class="info">
         <a [routerLink]="['/profiles', article.author.username]">
-          {{ article.author.username}}
+          {{ article.author.username }}
         </a>
         <span class="date">{{ article.createdAt }}</span>
       </section>
-      <div class="pull-xs-right">
-        ADD TO FAVORITES
-      </div>
+      <div class="pull-xs-right">ADD TO FAVORITES</div>
     </article>
 
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
@@ -27,4 +29,11 @@
     </a>
   </li>
 </ul>
-PAGINATION...
+
+<app-pagination
+  *ngIf="feed$ | async"
+  [total]="(feed$ | async)?.articlesCount"
+  [url]="baseUrl"
+  [limit]="limit"
+  [currentPage]="currentPage"
+></app-pagination>

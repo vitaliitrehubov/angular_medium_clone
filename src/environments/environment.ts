@@ -9,6 +9,7 @@ export const environment = {
   apiUrlArticles: 'https://conduit.productionready.io/api/articles',
   apiUrlRegister: 'https://conduit.productionready.io/api/users',
   apiUrlLogin: 'https://conduit.productionready.io/api/users/login',
+  articlesPerPage: 20
 };
 
 /*

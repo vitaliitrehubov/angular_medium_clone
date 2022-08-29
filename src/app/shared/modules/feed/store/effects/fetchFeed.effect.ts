@@ -12,15 +12,18 @@ export class FetchFeedEffect {
   fetchFeed$ = createEffect(
     () => this.actions$.pipe(
       ofType(fetchFeedActions.fetchFeedStartAction),
-      switchMap(({ url }) => {
-        console.log('URL:', url);
-        return this.feedService.fetchFeed(url).pipe(
-          map((feed: FetchFeedResponseInterface) =>
-            fetchFeedActions.fetchFeedSuccessAction({ feed })
-          ),
-          catchError(() => of(fetchFeedActions.fetchFeedFailureAction()))
-        )
-      })
+      switchMap(({ url }) =>
+        this.feedService
+          .fetchFeed(url)
+          .pipe(
+            map((feed: FetchFeedResponseInterface) => {
+              console.log('FEED: ', feed);
+              return fetchFeedActions.fetchFeedSuccessAction({ feed })
+            }
+            ),
+            catchError(() => of(fetchFeedActions.fetchFeedFailureAction()))
+          )
+      )
     )
   );
 
