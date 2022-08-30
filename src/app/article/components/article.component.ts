@@ -5,6 +5,7 @@ import { Subscription, Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { fetchArticleStartAction } from 'src/app/article/store/actions/fetchArticle.action';
+import { deleteArticleStartAction } from 'src/app/article/store/actions/deleteArticle.action';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
 import * as articleSelectors from 'src/app/article/store/selectors';
 import { userSelector } from "src/app/auth/store/selectors";
@@ -35,7 +36,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   initializeValues() {
-    // this.slug = this.route.snapshot.paramMap.get('slug');
+    this.slug = this.route.snapshot.paramMap.get('slug');
 
     this.error$ = this.store.pipe(
       select(articleSelectors.errorSelector)
@@ -65,8 +66,11 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   fetchArticle() {
-    const slug = this.route.snapshot.paramMap.get('slug');
-    this.store.dispatch(fetchArticleStartAction({ slug }));
+    this.store.dispatch(fetchArticleStartAction({ slug: this.slug }));
+  }
+
+  onDeleteArticle() {
+    this.store.dispatch(deleteArticleStartAction({ slug: this.slug }));
   }
 
   ngOnDestroy() {

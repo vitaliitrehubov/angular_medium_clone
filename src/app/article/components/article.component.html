@@ -10,7 +10,7 @@
           <a [routerLink]="['/profiles', article.author.username]">
             {{ article.author.username }}
           </a>
-          <span class="date">{{ article.createdAt }}</span>
+          <span class="date">{{ article.createdAt | date: 'mediumDate' }}</span>
         </div>
         <span *ngIf="isAuthor$ | async">
           <a
@@ -20,7 +20,11 @@
             <i class="ion-edit"></i>
             Edit Article
           </a>
-          DELETE ARTICLE BUTTON...
+          <button
+            (click)="onDeleteArticle()"
+            class="btn btn-sm btn-outline-danger"
+            type="button"
+          >Delete Article</button>
         </span>
       </div>
     </div>
