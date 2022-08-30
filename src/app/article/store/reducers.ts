@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { routerNavigationAction } from '@ngrx/router-store';
+import { routerNavigationAction, routerNavigatedAction } from '@ngrx/router-store';
 
 import { ArticleStateInterface } from 'src/app/article/types/articleState.interface';
 import * as fetchArticleActions from 'src/app/article/store/actions/fetchArticle.action';
@@ -34,7 +34,7 @@ const articleReducer = createReducer(
   ),
 
   on(
-    fetchArticleActions.fetchArticleStartAction,
+    fetchArticleActions.fetchArticleFailureAction,
     (state): ArticleStateInterface => ({
       ...state,
       data: null,
@@ -44,9 +44,9 @@ const articleReducer = createReducer(
   ),
 
   on(
-    routerNavigationAction,
+    routerNavigationAction, routerNavigatedAction,
     (): ArticleStateInterface => initialState
-  )
+  ),
 );
 
 export function reducers(state: ArticleStateInterface, action: Action) {
