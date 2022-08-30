@@ -16,10 +16,8 @@ export class FetchFeedEffect {
         this.feedService
           .fetchFeed(url)
           .pipe(
-            map((feed: FetchFeedResponseInterface) => {
-              console.log('FEED: ', feed);
-              return fetchFeedActions.fetchFeedSuccessAction({ feed })
-            }
+            map((feed: FetchFeedResponseInterface) =>
+              fetchFeedActions.fetchFeedSuccessAction({ feed })
             ),
             catchError(() => of(fetchFeedActions.fetchFeedFailureAction()))
           )

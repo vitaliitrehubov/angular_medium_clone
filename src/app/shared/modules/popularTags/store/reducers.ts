@@ -24,15 +24,13 @@ const tagsReducer = createReducer(
 
   on(
     fetchTagsActions.fetchTagsSuccessAction,
-    (state, { tags }): PopularTagsStateInterface => {
-      console.log('REUCER: ', tags);
-      return ({
-        ...state,
-        data: tags,
-        isLoading: false,
-        error: null
-      })
-    }
+    (state, { tags }): PopularTagsStateInterface => ({
+      ...state,
+      data: tags,
+      isLoading: false,
+      error: null
+    })
+
   ),
 
   on(

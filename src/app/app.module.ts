@@ -10,6 +10,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { TopBarModule } from 'src/app/shared/modules/topBar/topBar.module';
 import { GlobalFeedModule } from 'src/app/globalFeed/globalFeed.module';
+import { YourFeedModule } from 'src/app/yourFeed/yourFeed.module';
+import { TagFeedModule } from 'src/app/tagFeed/tagFeed.module';
 
 import { environment } from 'src/environments/environment';
 import { AppComponent } from 'src/app/app.component';
@@ -38,6 +40,8 @@ import { AuthInterceptor } from 'src/app/shared/services/authInterceptor.service
     AuthModule,
     TopBarModule,
     GlobalFeedModule,
+    YourFeedModule,
+    TagFeedModule
   ],
   providers: [
     {

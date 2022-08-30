@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
 import { of } from 'rxjs';
-import { map, switchMap, catchError, tap } from 'rxjs/operators';
+import { map, switchMap, catchError } from 'rxjs/operators';
 
 import * as fetchTagsActions from 'src/app/shared/modules/popularTags/store/actions/fetchTags.action';
 import { PopularTagsService } from 'src/app/shared/modules/popularTags/services/popularTags.service';
@@ -15,7 +15,6 @@ export class FetchTagsEffect {
         this.popularTagsService
           .fetchPopularTags()
           .pipe(
-            tap((data) => console.log('TAGS: ', data)),
             map((tags) => fetchTagsActions.fetchTagsSuccessAction({ tags })),
             catchError(() => of(fetchTagsActions.fetchTagsFailureAction()))
           )
