@@ -13,6 +13,7 @@ import { GlobalFeedModule } from 'src/app/globalFeed/globalFeed.module';
 import { YourFeedModule } from 'src/app/yourFeed/yourFeed.module';
 import { TagFeedModule } from 'src/app/tagFeed/tagFeed.module';
 import { ArticleModule } from 'src/app/article/article.module';
+import { CreateArticleModule } from 'src/app/createArticle/createArticle.module';
 
 import { environment } from 'src/environments/environment';
 import { AppComponent } from 'src/app/app.component';
@@ -43,7 +44,8 @@ import { AuthInterceptor } from 'src/app/shared/services/authInterceptor.service
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
-    ArticleModule
+    CreateArticleModule,
+    ArticleModule,
   ],
   providers: [
     {

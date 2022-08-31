@@ -1,0 +1,7 @@
+new article
+<article-form
+  (articleSubmit)="onCreateArticle($event)"
+  [initialValues]="initialValues"
+  [isSubmitting]="isSubmitting$ | async"
+  [errors]="errors$ | async"
+></article-form>
