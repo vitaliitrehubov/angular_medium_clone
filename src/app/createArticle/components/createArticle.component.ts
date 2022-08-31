@@ -40,7 +40,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onCreateArticle(article: ArticleInputInterface) {
-    console.log('ARTICLE: ', article);
     this.store.dispatch(createArticleStartAction({ article }));
   }
 }

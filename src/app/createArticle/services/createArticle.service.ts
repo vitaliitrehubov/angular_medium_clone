@@ -17,7 +17,6 @@ export class CreateArticleService {
 
   createArticle(article: ArticleInputInterface): Observable<ArticleInterface> {
     const url = environment.apiUrlArticles;
-    console.log('SERRSF: ', url, article);
 
     return this.http
       .post<SaveArticleResponseInterface>(url, { article })

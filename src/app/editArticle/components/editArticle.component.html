@@ -1,0 +1,13 @@
+<app-loading *ngIf="isLoading$ | async"></app-loading>
+
+<ng-container *ngIf="initialValues$ | async">
+  <div class="container">
+    <h2 style="text-align: center; margin-top: 5vh">Update Post</h2>
+  </div>
+  <article-form
+    (articleSubmit)="onUpdateArticle($event)"
+    [initialValues]="initialValues$ | async"
+    [isSubmitting]="isSubmitting$ | async"
+    [errors]="errors$ | async"
+  ></article-form>
+</ng-container>
