@@ -19,7 +19,7 @@ export class ArticleFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -37,6 +37,12 @@ export class ArticleFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.articleSubmitEvent.emit(this.form.value);
+    let { tagList } = this.form.value;
+    tagList = tagList?.split(' ')?.filter((val) => val !== '');
+
+    this.articleSubmitEvent.emit({
+      ...this.form.value,
+      tagList
+    });
   }
 }

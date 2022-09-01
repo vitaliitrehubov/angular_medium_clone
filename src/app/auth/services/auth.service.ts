@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { RegisterRequestInterface } from 'src/app/auth/types/registerRequest.interface';
 import { LoginRequestInterface } from 'src/app/auth/types/loginRequest.interface';
 import { UserInterface } from 'src/app/shared/types/user.interface';
+import { UserInputInterface } from 'src/app/shared/types/userInput.interface';
 import { environment } from 'src/environments/environment';
 import { AuthResponseInterface } from 'src/app/auth/types/authResponse.interface';
 
@@ -29,6 +30,12 @@ export class AuthService {
   fetchUser(): Observable<UserInterface> {
     return this.http
       .get<AuthResponseInterface>(environment.apiUrlUser)
+      .pipe(map(this.retrieveUser))
+  }
+
+  updateUserInfo(user: UserInputInterface): Observable<UserInterface> {
+    return this.http
+      .put<AuthResponseInterface>(environment.apiUrlUser, { user })
       .pipe(map(this.retrieveUser))
   }
 

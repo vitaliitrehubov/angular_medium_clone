@@ -11,7 +11,9 @@ import { LoginComponent } from "src/app/auth/components/login/login.component";
 import { reducers } from "src/app/auth/store/reducers";
 import { FetchUserEffect } from 'src/app/auth/store/effects/fetchUser.effect';
 import { RegisterEffect } from 'src/app/auth/store/effects/register.effect';
+import { UpdateUserEffect } from 'src/app/auth/store/effects/updateUser.effect';
 import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
+import { LogoutEffect } from 'src/app/auth/store/effects/logout.effect';
 import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
 
@@ -42,7 +44,9 @@ const components = [
     EffectsModule.forFeature([
       FetchUserEffect,
       RegisterEffect,
-      LoginEffect
+      UpdateUserEffect,
+      LoginEffect,
+      LogoutEffect
     ]),
 
     BackendErrorMessagesModule

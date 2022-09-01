@@ -11,6 +11,7 @@ import { UserInterface } from 'src/app/shared/types/user.interface';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
+  isLoading$: Observable<boolean>;
   isLoggedIn$: Observable<boolean>;
   isAnonymous$: Observable<boolean>;
   user$: Observable<UserInterface | null>;
@@ -34,6 +35,10 @@ export class TopBarComponent implements OnInit {
 
     this.user$ = this.store.pipe(
       select(selectors.userSelector)
+    );
+
+    this.isLoading$ = this.store.pipe(
+      select(selectors.isLoadingSelector)
     );
   }
 }

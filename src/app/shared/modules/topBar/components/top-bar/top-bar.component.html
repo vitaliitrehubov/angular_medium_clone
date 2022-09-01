@@ -1,18 +1,26 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a [routerLink]="['/']" class="navbar-brand">
-      Medium
-    </a>
+    <a [routerLink]="['/']" class="navbar-brand"> Medium </a>
 
-    <ul class="nav navbar-nav pull-xs-right">
+    <ul
+      class="nav navbar-nav pull-xs-right"
+      style="display: flex; align-items: center"
+    >
       <li class="nav-item">
         <a
           [routerLink]="['/']"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
           class="nav-link"
-        >Home</a>
+          >Home</a
+        >
       </li>
+
+      <ng-container *ngIf="isLoading$ | async">
+        <li class="nav-item"><app-loading></app-loading></li>
+        <li class="nav-item"><app-loading></app-loading></li>
+        <li class="nav-item"><app-loading></app-loading></li>
+      </ng-container>
 
       <ng-container *ngIf="isLoggedIn$ | async">
         <li class="nav-item">
@@ -43,7 +51,6 @@
             routerLinkActive="active-link"
             class="nav-link"
           >
-            <!-- <img [src]="(user$ | async).image" alt="user avatar" /> -->
             {{ (user$ | async).username }}
           </a>
         </li>
@@ -51,10 +58,20 @@
 
       <ng-container *ngIf="isAnonymous$ | async">
         <li class="nav-item">
-          <a [routerLink]="['/login']" routerLinkActive="active-link" class="nav-link">Login</a>
+          <a
+            [routerLink]="['/login']"
+            routerLinkActive="active-link"
+            class="nav-link"
+            >Login</a
+          >
         </li>
         <li class="nav-item">
-          <a [routerLink]="['/register']" routerLinkActive="active-link" class="nav-link">Register</a>
+          <a
+            [routerLink]="['/register']"
+            routerLinkActive="active-link"
+            class="nav-link"
+            >Register</a
+          >
         </li>
       </ng-container>
     </ul>

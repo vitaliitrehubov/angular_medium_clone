@@ -18,7 +18,8 @@ const tagsReducer = createReducer(
     (state): PopularTagsStateInterface => ({
       ...state,
       isLoading: true,
-      error: null
+      error: null,
+      data: null
     })
   ),
 

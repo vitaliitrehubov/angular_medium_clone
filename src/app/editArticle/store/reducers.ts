@@ -26,7 +26,8 @@ const editArticleReducer = createReducer(
     updateArticleActions.updateArticleSuccessAction,
     (state): EditArticleStateInterface => ({
       ...state,
-      isSubmitting: false
+      isSubmitting: false,
+      article: null
     })
   ),
 

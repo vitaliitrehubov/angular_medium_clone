@@ -1,12 +1,15 @@
-<app-loading *ngIf="isLoading$ | async"></app-loading>
+<div class="sidebar">
+  <p>Popular Tags</p>
+  <error-message *ngIf="error$ | async" [message]="error$ | async"></error-message>
 
-<error-message
-  *ngIf="error$ | async"
-  [message]="error$ | async"
-></error-message>
+  <div *ngIf="isLoading$ | async" class="tag-list">
+    <app-loading BRadius="20px" CWidth="120"></app-loading>
+    <app-loading BRadius="20px" CWidth="120"></app-loading>
+    <app-loading BRadius="20px" CWidth="120"></app-loading>
+    <app-loading BRadius="20px" CWidth="120"></app-loading>
+  </div>
 
 <div *ngIf="tags$ | async" class="sidebar">
-  <p>Popular Tags</p>
   <div class="tag-list">
     <a
       *ngFor="let tag of (tags$ | async)"
@@ -16,5 +19,7 @@
       {{ tag }}
     </a>
   </div>
+</div>
+
 </div>
 

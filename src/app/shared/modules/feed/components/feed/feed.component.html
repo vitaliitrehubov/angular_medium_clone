@@ -7,10 +7,7 @@
   <li *ngFor="let article of (feed$ | async)?.articles" class="article-preview">
     <article class="article-meta">
       <a [routerLink]="['/profiles', article.author.username]">
-        <img
-          [src]="article.author.image"
-          [alt]="article.author.username + ' profile image'"
-        />
+        <img [src]="article.author.image" />
       </a>
       <section class="info">
         <a [routerLink]="['/profiles', article.author.username]">
