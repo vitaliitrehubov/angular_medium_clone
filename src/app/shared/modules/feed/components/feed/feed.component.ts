@@ -8,6 +8,7 @@ import { fetchFeedStartAction } from 'src/app/shared/modules/feed/store/actions/
 import { FetchFeedResponseInterface } from 'src/app/shared/modules/feed/types/fetchFeedResponse.interface';
 import { environment } from 'src/environments/environment';
 import * as fetchFeedSelectors from 'src/app/shared/modules/feed/store/selectors';
+import { isLoggedInSelector } from 'src/app/auth/store/selectors';
 
 @Component({
   selector: 'app-feed',
@@ -20,6 +21,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   feed$: Observable<FetchFeedResponseInterface | null>;
   error$: Observable<string | null>;
   isLoading$: Observable<boolean>;
+  isLoggedIn$: Observable<boolean>;
   queryParamSubs$: Subscription;
 
   limit = environment.articlesPerPage;
@@ -50,6 +52,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 
     this.error$ = this.store.pipe(
       select(fetchFeedSelectors.errorSelector)
+    );
+
+    this.isLoggedIn$ = this.store.pipe(
+      select(isLoggedInSelector)
     );
   }
 

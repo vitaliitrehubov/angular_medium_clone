@@ -9,6 +9,7 @@ import { ErrorMessageModule } from 'src/app/shared/modules/errorMessage/errorMes
 import { LoadingModule } from 'src/app/shared/modules/loading/loading.module';
 import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
 import { TagListModule } from "src/app/shared/modules/tagList/tagList.module";
+import { AddToFavoritesModule } from 'src/app/shared/modules/addToFavorites/addToFavorites.module';
 
 import { FetchFeedEffect } from 'src/app/shared/modules/feed/store/effects/fetchFeed.effect';
 import { FeedComponent } from './components/feed/feed.component';
@@ -30,7 +31,8 @@ import { reducers } from 'src/app/shared/modules/feed/store/reducers';
     ErrorMessageModule,
     LoadingModule,
     PaginationModule,
-    TagListModule
+    TagListModule,
+    AddToFavoritesModule
   ],
   exports: [FeedComponent],
   providers: [FeedService]

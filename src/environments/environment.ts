@@ -11,7 +11,7 @@ export const environment = {
   apiUrlTags: 'https://conduit.productionready.io/api/tags',
   apiUrlRegister: 'https://conduit.productionready.io/api/users',
   apiUrlLogin: 'https://conduit.productionready.io/api/users/login',
-  articlesPerPage: 20
+  articlesPerPage: 10
 };
 
 /*

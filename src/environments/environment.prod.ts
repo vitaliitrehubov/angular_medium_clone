@@ -7,5 +7,5 @@ export const environment = {
   apiUrlUser: 'https://conduit.productionready.io/api/user',
   apiUrlRegister: 'https://conduit.productionready.io/api/users',
   apiUrlLogin: 'https://conduit.productionready.io/api/users/login',
-  articlesPerPage: 20
+  articlesPerPage: 10
 };
