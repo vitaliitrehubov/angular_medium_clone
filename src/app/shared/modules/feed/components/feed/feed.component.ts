@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { isLoggedInSelector } from 'src/app/auth/store/selectors';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
   @Input('apiUrl') apiUrlProps: string;
 
   feed$: Observable<FetchFeedResponseInterface | null>;
@@ -37,6 +37,17 @@ export class FeedComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeValues();
     this.initializeListeners();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const { firstChange, currentValue, previousValue } = changes['apiUrlProps'];
+    const isApiUrlChanged = !firstChange && currentValue !== previousValue;
+
+    if (isApiUrlChanged) this.fetchFeed();
+  }
+
+  ngOnDestroy(): void {
+    this.queryParamSubs$.unsubscribe();
   }
 
   initializeValues() {
@@ -84,7 +95,4 @@ export class FeedComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
-    this.queryParamSubs$.unsubscribe();
-  }
 }

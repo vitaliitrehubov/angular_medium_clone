@@ -1,5 +1,9 @@
 <app-loading *ngIf="isLoading$ | async"></app-loading>
 
+<h6 *ngIf="!(isLoading$ | async) && (feed$ | async)?.articles.length === 0">
+  No Articles Available yet
+</h6>
+
 <error-message *ngIf="error$ | async" [message]="error$ | async">
 </error-message>
 
@@ -35,7 +39,7 @@
 </ul>
 
 <app-pagination
-  *ngIf="feed$ | async"
+  *ngIf="(feed$ | async) && (feed$ | async)?.articles.length > 0"
   [total]="(feed$ | async)?.articlesCount"
   [url]="baseUrl"
   [limit]="limit"
