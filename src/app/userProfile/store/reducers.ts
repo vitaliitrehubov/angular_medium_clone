@@ -38,10 +38,10 @@ const userProfileReducer = createReducer(
     })
   ),
 
-  // on(
-  //   routerNavigationAction,
-  //   (): UserProfileStateInterface => initialState
-  // )
+  on(
+    routerNavigationAction,
+    (): UserProfileStateInterface => initialState
+  )
 )
 
 export function reducers(state: UserProfileStateInterface, action: Action) {

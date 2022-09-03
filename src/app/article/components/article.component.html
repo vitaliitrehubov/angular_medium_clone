@@ -1,6 +1,17 @@
 <div class="article-page">
   <div class="banner">
-    <div *ngIf="article" class="container">
+    <div *ngIf="isLoading$ | async" class="container">
+      <app-loading CWidth="200" CHeight="30"></app-loading>
+      <div style="display: flex; padding-top: 20px;">
+        <app-loading CWidth="30" CHeight="30" BRadius="50%"></app-loading>
+        <div style="display: flex; flex-direction: column;">
+          <app-loading CWidth="100" CHeight="10"></app-loading>
+          <app-loading CWidth="100" CHeight="10"></app-loading>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="article && !(isLoading$ | async)" class="container">
       <h1>{{ article.title }}</h1>
       <div class="article-meta">
         <a [routerLink]="['/profiles', article.author.username]">
@@ -31,7 +42,13 @@
   </div>
 
   <div class="container page">
-    <app-loading *ngIf="isLoading$ | async"></app-loading>
+    <ng-container *ngIf="isLoading$ | async">
+      <app-loading CWidth="400" CHeight="12"></app-loading>
+      <app-loading CWidth="400" CHeight="12"></app-loading>
+      <app-loading CWidth="400" CHeight="12"></app-loading>
+      <app-loading CWidth="400" CHeight="12"></app-loading>
+    </ng-container>
+
     <error-message
       *ngIf="error$ | async"
       [message]="error$ | async">

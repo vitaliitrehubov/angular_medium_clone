@@ -1,4 +1,17 @@
-<app-loading *ngIf="isLoading$ | async"></app-loading>
+<article *ngIf="isLoading$ | async" style="padding: 20px">
+  <div style="display: flex; align-items: center">
+    <app-loading CHeight="40" CWidth="40" BRadius="50%"></app-loading>
+    <div>
+      <app-loading CHeight="10" CWidth="80"></app-loading>
+      <app-loading CHeight="10" CWidth="140"></app-loading>
+    </div>
+  </div>
+  <section class="info">
+    <app-loading CHeight="10" CWidth="400"></app-loading>
+    <app-loading CHeight="10" CWidth="400"></app-loading>
+    <app-loading CHeight="10" CWidth="400"></app-loading>
+  </section>
+</article>
 
 <h6 *ngIf="!(isLoading$ | async) && (feed$ | async)?.articles.length === 0">
   No Articles Available yet

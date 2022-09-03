@@ -11,12 +11,14 @@ import { CreateArticleEffect } from 'src/app/createArticle/store/effects/createA
 import { reducers } from 'src/app/createArticle/store/reducers';
 import { CreateArticleService } from 'src/app/createArticle/services/createArticle.service';
 import { CreateArticleComponent } from 'src/app/createArticle/components/createArticle.component';
+import { CanActivateGuard } from "src/app/createArticle/services/canActivateGuard.service";
 
 
 const routes: Routes = [
   {
     path: 'articles/new',
-    component: CreateArticleComponent
+    component: CreateArticleComponent,
+    canActivate: [CanActivateGuard]
   }
 ];
 
@@ -33,6 +35,9 @@ const routes: Routes = [
 
     ArticleFormModule
   ],
-  providers: [CreateArticleService]
+  providers: [
+    CreateArticleService,
+    CanActivateGuard
+  ]
 })
 export class CreateArticleModule {}

@@ -44,7 +44,11 @@ const articleReducer = createReducer(
   ),
 
   on(
-    routerNavigationAction, routerNavigatedAction,
+    routerNavigatedAction,
+    (): ArticleStateInterface => initialState
+  ),
+  on(
+    routerNavigationAction,
     (): ArticleStateInterface => initialState
   ),
 );

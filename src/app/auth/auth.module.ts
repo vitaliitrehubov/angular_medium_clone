@@ -16,15 +16,18 @@ import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
 import { LogoutEffect } from 'src/app/auth/store/effects/logout.effect';
 import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
+import { CanActivateGuard } from "src/app/auth/services/canActivateGuard.service";
 
 const routes: Routes = [
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [CanActivateGuard],
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [CanActivateGuard],
   }
 ];
 
@@ -52,7 +55,11 @@ const components = [
     BackendErrorMessagesModule
   ],
   exports: components,
-  providers: [AuthService, PersistanceService]
+  providers: [
+    AuthService,
+    PersistanceService,
+    CanActivateGuard
+  ]
 })
-export class AuthModule {}
+export class AuthModule { }
 

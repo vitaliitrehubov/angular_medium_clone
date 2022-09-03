@@ -5,6 +5,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 
 import { FeedModule } from 'src/app/shared/modules/feed/feed.module';
+import { LoadingModule } from 'src/app/shared/modules/loading/loading.module';
 
 import { reducers } from 'src/app/userProfile/store/reducers';
 import { FetchUserProfileEffect } from 'src/app/userProfile/store/effects/fetchUserProfile.effect';
@@ -32,7 +33,8 @@ const routes: Routes = [
     ]),
     StoreModule.forFeature('userProfile', reducers),
 
-    FeedModule
+    FeedModule,
+    LoadingModule
   ],
   providers: [UserProfileService]
 })
