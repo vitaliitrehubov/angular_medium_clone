@@ -21,6 +21,7 @@ import { UserProfileModule } from 'src/app/userProfile/userProfile.module';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from 'src/app/app.component';
 import { AuthInterceptor } from 'src/app/shared/services/authInterceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AuthInterceptor } from 'src/app/shared/services/authInterceptor.service
     EditArticleModule,
     ArticleModule,
     SettingsModule,
-    UserProfileModule
+    UserProfileModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

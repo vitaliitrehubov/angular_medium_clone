@@ -16,6 +16,12 @@
                 placeholder="Article Title"
                 formControlName="title"
               />
+              <span
+                *ngIf="form.get('title').touched && form.get('title').invalid"
+                style="color: red"
+              >
+                <span>This field is required!</span>
+              </span>
             </fieldset>
 
             <fieldset class="form-group">
@@ -25,6 +31,12 @@
                 placeholder="What Is This Article About?"
                 formControlName="description"
               />
+              <span
+                *ngIf="form.get('description').touched && form.get('description').invalid"
+                style="color: red"
+              >
+                <span>This field is required!</span>
+              </span>
             </fieldset>
 
             <fieldset class="form-group">
@@ -34,6 +46,13 @@
                 placeholder="Article Content"
                 formControlName="body"
               ></textarea>
+              <span
+                *ngIf="form.get('body').touched && form.get('body').invalid"
+                style="color: red"
+              >
+                <span *ngIf="form.get('body').errors['required']">This field is required!</span>
+                <span *ngIf="form.get('body').errors['minLength']">Min Length is 20 chars!</span>
+              </span>
             </fieldset>
 
             <fieldset class="form-group">

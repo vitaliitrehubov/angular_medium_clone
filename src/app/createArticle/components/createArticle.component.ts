@@ -4,20 +4,23 @@ import { Observable } from "rxjs";
 
 import { ArticleInputInterface } from "src/app/shared/types/articleInput.interface";
 import { createArticleStartAction } from "src/app/createArticle/store/actions/createArticle.action";
+import { ComponentWithFormInterface } from 'src/app/shared/types/componentWithForm.interface';
 import * as createArticleSelectors from 'src/app/createArticle/store/selectors';
 
 @Component({
   selector: 'app-create-article',
   templateUrl: './createArticle.component.html'
 })
-export class CreateArticleComponent implements OnInit {
+export class CreateArticleComponent implements OnInit, ComponentWithFormInterface {
   initialValues: ArticleInputInterface = {
     title: '',
     description: '',
     body: '',
     tagList: []
   }
+  isFormDirty = false;
 
+  isFormSubmitted = false;
   isSubmitting$: Observable<boolean>;
   errors$: Observable<string[]>;
 
@@ -40,6 +43,15 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onCreateArticle(article: ArticleInputInterface) {
+    this.isFormSubmitted = true;
     this.store.dispatch(createArticleStartAction({ article }));
+  }
+
+  isFormDataSaved(): boolean {
+    return this.isFormSubmitted || !this.isFormDirty;
+  }
+
+  onFormValueChanged(isDirty: boolean) {
+    this.isFormDirty = isDirty;
   }
 }

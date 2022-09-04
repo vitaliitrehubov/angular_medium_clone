@@ -3,6 +3,7 @@
 </div>
 <article-form
   (articleSubmit)="onCreateArticle($event)"
+  (isFormDirty)="onFormValueChanged($event)"
   [initialValues]="initialValues"
   [isSubmitting]="isSubmitting$ | async"
   [errors]="errors$ | async"

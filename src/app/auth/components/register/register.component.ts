@@ -33,7 +33,6 @@ export class RegisterComponent implements OnInit {
     }
 
     this.store.dispatch(registerStartAction({ request }));
-    console.log('form: ', this.registerForm);
   }
 
   initializeForm() {

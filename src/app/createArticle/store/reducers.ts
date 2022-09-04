@@ -24,15 +24,16 @@ const createArticleReducer = createReducer(
     createArticleActions.createArticleSuccessAction,
     (state): CreateArticleStateInterface => ({
       ...state,
-      isSubmitting: false
+      isSubmitting: false,
+      errors: null
     })
   ),
 
   on(
     createArticleActions.createArticleFailureAction,
-    (state, { errors }): CreateArticleStateInterface => ({
+    (state): CreateArticleStateInterface => ({
       ...state,
-      errors,
+      errors: ['some error occured!'],
       isSubmitting: false
     })
   ),
