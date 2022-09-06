@@ -1,0 +1,60 @@
+<mat-nav-list>
+  <li>
+    <a
+      (click)="onCloseSidenav()"
+      [routerLink]="['/']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      ><mat-icon>home</mat-icon>&nbsp;Home</a
+    >
+  </li>
+
+  <ng-container *ngIf="isLoggedIn$ | async">
+    <li>
+      <a
+        (click)="onCloseSidenav()"
+        [routerLink]="['/articles/new']"
+        routerLinkActive="active-link"
+      >
+        <mat-icon>editor</mat-icon>&nbsp;New Post
+      </a>
+    </li>
+    <li>
+      <a
+        (click)="onCloseSidenav()"
+        [routerLink]="['/settings']"
+        routerLinkActive="active-link"
+      >
+        <mat-icon>settings</mat-icon>&nbsp;Settings
+      </a>
+    </li>
+    <li>
+      <a
+        (click)="onCloseSidenav()"
+        [routerLink]="['/profiles', (user$ | async).username]"
+        routerLinkActive="active-link"
+      >
+        <mat-icon>person</mat-icon>&nbsp;{{ (user$ | async).username }}
+      </a>
+    </li>
+  </ng-container>
+
+  <ng-container *ngIf="isAnonymous$ | async">
+    <li>
+      <a
+        (click)="onCloseSidenav()"
+        [routerLink]="['/login']"
+        routerLinkActive="active-link"
+        >Login</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="onCloseSidenav()"
+        [routerLink]="['/register']"
+        routerLinkActive="active-link"
+        >Register</a
+      >
+    </li>
+  </ng-container>
+</mat-nav-list>

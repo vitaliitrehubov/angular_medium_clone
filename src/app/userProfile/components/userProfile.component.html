@@ -3,7 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1">
-          <div style="display: flex; flex-direction: column; align-items: center;">
+          <div
+            style="display: flex; flex-direction: column; align-items: center"
+          >
             <app-loading CWidth="120" CHeight="120"></app-loading>
             <app-loading CWidth="200" CHeight="20"></app-loading>
             <app-loading CWidth="400" CHeight="10"></app-loading>
@@ -36,35 +38,29 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-10 offset-md-1">
-        <div class="articles-toggle">
-          <ul class="nav nav-pills outline-active">
-            <li class="nav-item">
-              <a
-                [routerLink]="['/profiles', userProfile.username]"
-                [routerLinkActiveOptions]="{ exact: true }"
-                routerLinkActive="active"
-                class="nav-link"
-                >My Posts</a
-              >
-            </li>
+  <div class="feed-toggle">
+    <ul class="nav nav-pills outline-active">
+      <li class="nav-item">
+        <a
+          [routerLink]="['/profiles', userProfile.username]"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+          class="nav-link"
+          >My Posts</a
+        >
+      </li>
 
-            <li class="nav-item">
-              <a
-                [routerLink]="['/profiles', userProfile.username, 'favorites']"
-                [routerLinkActiveOptions]="{ exact: true }"
-                routerLinkActive="active"
-                class="nav-link"
-                >Favorite Posts</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <app-feed [apiUrl]="getApiUrl()"></app-feed>
-      </div>
-    </div>
+      <li class="nav-item">
+        <a
+          [routerLink]="['/profiles', userProfile.username, 'favorites']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+          class="nav-link"
+          >Favorite Posts</a
+        >
+      </li>
+    </ul>
   </div>
+
+  <app-feed [apiUrl]="getApiUrl()"></app-feed>
 </div>

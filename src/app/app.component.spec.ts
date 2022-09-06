@@ -1,35 +1,30 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { MockStore } from '@ngrx/store/testing';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+import { AppComponent } from 'src/app/app.component';
+
+describe('app component', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  let store: MockStore;
+  const storeMock = jasmine.createSpyObj('Store', ['dispatch']);
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      providers: [
+        { provide: Store, useValue: storeMock }
+      ]
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'medium-clone'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('medium-clone');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    store = TestBed.inject(Store) as MockStore;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('medium-clone app is running!');
   });
-});
+
+  it('ngOnInit should dispatch an action', () => {
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+  });
+})

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -6,13 +6,13 @@ import * as selectors from 'src/app/auth/store/selectors';
 import { UserInterface } from 'src/app/shared/types/user.interface';
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.scss']
+  selector: 'app-sidenav-list',
+  templateUrl: './sidenavList.component.html',
+  styleUrls: ['./sidenavList.component.scss']
 })
-export class TopBarComponent implements OnInit {
-  @Output('sidenavToggle')
-  sidenavToggleEvent = new EventEmitter<void>();
+export class SidenavListComponent implements OnInit {
+  @Output('sidenavClose')
+  sidenavCloseEvent = new EventEmitter<void>();
 
   isLoading$: Observable<boolean>;
   isLoggedIn$: Observable<boolean>;
@@ -23,8 +23,12 @@ export class TopBarComponent implements OnInit {
     private store: Store
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.initializeValues();
+  }
+
+  onCloseSidenav() {
+    this.sidenavCloseEvent.emit();
   }
 
   initializeValues() {
@@ -39,13 +43,5 @@ export class TopBarComponent implements OnInit {
     this.user$ = this.store.pipe(
       select(selectors.userSelector)
     );
-
-    this.isLoading$ = this.store.pipe(
-      select(selectors.isLoadingSelector)
-    );
-  }
-
-  onToggleSidenav() {
-    this.sidenavToggleEvent.emit();
   }
 }

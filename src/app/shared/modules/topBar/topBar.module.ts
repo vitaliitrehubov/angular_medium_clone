@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoadingModule } from 'src/app/shared/modules/loading/loading.module';
 
 import { TopBarComponent } from './components/top-bar/top-bar.component';
@@ -14,6 +16,8 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     RouterModule,
     StoreModule,
 
+    MatIconModule,
+    MatToolbarModule,
     LoadingModule
   ],
   exports: [TopBarComponent]

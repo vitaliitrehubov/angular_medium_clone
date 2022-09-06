@@ -1,5 +1,5 @@
 <div class="feed-toggle">
-  <ul class="nav nav-pills outline-active">
+  <ul>
     <li *ngIf="isLoggedIn$ | async" class="nav-item">
       <a
         [routerLink]="['/feed']"
@@ -23,8 +23,7 @@
         routerLinkActive="active"
         class="nav-link"
       >
-        <i class="ion-pound"></i>
-        {{ tagNameProps }}
+        # {{ tagNameProps }}
       </a>
     </li>
   </ul>

@@ -11,9 +11,11 @@ import { UserInputInterface } from "src/app/shared/types/userInput.interface";
 import { updateUserStartAction } from 'src/app/auth/store/actions/updateUser.actions';
 
 @Component({
-  templateUrl: './settings.component.html'
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
+  hide = true;
   form: FormGroup;
   user: UserInterface | null;
   userSubscription: Subscription;

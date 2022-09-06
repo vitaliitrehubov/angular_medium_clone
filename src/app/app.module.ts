@@ -6,9 +6,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { TopBarModule } from 'src/app/shared/modules/topBar/topBar.module';
+import { SidenavListModule } from 'src/app/shared/modules/sidenavList/sidenavList.module';
 import { GlobalFeedModule } from 'src/app/globalFeed/globalFeed.module';
 import { YourFeedModule } from 'src/app/yourFeed/yourFeed.module';
 import { TagFeedModule } from 'src/app/tagFeed/tagFeed.module';
@@ -31,7 +34,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     HttpClientModule,
-
     StoreModule.forRoot({
       router: routerReducer
     }),
@@ -42,9 +44,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     StoreRouterConnectingModule.forRoot(),
 
+    MatSidenavModule,
+
     AppRoutingModule,
     AuthModule,
     TopBarModule,
+    SidenavListModule,
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,

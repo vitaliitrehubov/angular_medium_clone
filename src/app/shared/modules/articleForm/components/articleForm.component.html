@@ -1,81 +1,71 @@
-<div class="editor-page">
-  <div class="container page">
-    <div class="row">
-      <div class="col-md-10 offset-md-1 col-xs-12">
-        <app-backend-error-messages
-          *ngIf="errorsProps"
-          [errors]="errorsProps"
-        ></app-backend-error-messages>
+<div class="article-form">
+  <app-backend-error-messages
+    *ngIf="errorsProps"
+    [errors]="errorsProps"
+  ></app-backend-error-messages>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="form">
-          <fieldset>
-            <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="Article Title"
-                formControlName="title"
-              />
-              <span
-                *ngIf="form.get('title').touched && form.get('title').invalid"
-                style="color: red"
-              >
-                <span>This field is required!</span>
-              </span>
-            </fieldset>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Article Title</mat-label>
+        <input matInput type="text" formControlName="title" />
+      </mat-form-field>
 
-            <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="What Is This Article About?"
-                formControlName="description"
-              />
-              <span
-                *ngIf="form.get('description').touched && form.get('description').invalid"
-                style="color: red"
-              >
-                <span>This field is required!</span>
-              </span>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <textarea
-                rows="8"
-                class="form-control form-control-lg"
-                placeholder="Article Content"
-                formControlName="body"
-              ></textarea>
-              <span
-                *ngIf="form.get('body').touched && form.get('body').invalid"
-                style="color: red"
-              >
-                <span *ngIf="form.get('body').errors['required']">This field is required!</span>
-                <span *ngIf="form.get('body').errors['minLength']">Min Length is 20 chars!</span>
-              </span>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="Add Tags"
-                formControlName="tagList"
-              />
-            </fieldset>
-
-            <fieldset>
-              <button
-                [disabled]="form.invalid || isSubmittingProps"
-                type="submit"
-                class="btn btn-lg pull-xs-right btn-primary"
-              >
-                Publish Article
-              </button>
-            </fieldset>
-          </fieldset>
-        </form>
-      </div>
+      <ng-container
+        *ngIf="form.get('title').touched && form.get('title').invalid"
+      >
+        <mat-error *ngIf="form.get('title').errors['required']">
+          This field is required!
+        </mat-error>
+      </ng-container>
     </div>
-  </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>What Is This Article About?</mat-label>
+        <input matInput type="text" formControlName="description" />
+      </mat-form-field>
+
+      <ng-container
+        *ngIf="form.get('description').touched && form.get('description').invalid"
+      >
+        <mat-error *ngIf="form.get('description').errors['required']">
+          This field is required!
+        </mat-error>
+      </ng-container>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Article Content</mat-label>
+        <textarea matInput formControlName="body"></textarea>
+      </mat-form-field>
+
+      <ng-container *ngIf="form.get('body').touched && form.get('body').invalid">
+        <mat-error *ngIf="form.get('body').errors['required']">
+          This field is required!
+        </mat-error>
+        <mat-error *ngIf="form.get('body').errors['minLength']">
+          Min Length is 20 chars!
+        </mat-error>
+      </ng-container>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Add Tags</mat-label>
+        <input matInput type="text" formControlName="tagList" />
+      </mat-form-field>
+    </div>
+
+    <div class="flex-center">
+      <button
+        mat-stroked-button
+        [disabled]="isSubmittingProps || form.invalid"
+        type="submit"
+      >
+        Publish Article
+      </button>
+    </div>
+  </form>
 </div>

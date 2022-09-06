@@ -6,7 +6,8 @@ import { isLoggedInSelector } from 'src/app/auth/store/selectors';
 
 @Component({
   selector: 'app-feed-toggler',
-  templateUrl: './feedToggler.component.html'
+  templateUrl: './feedToggler.component.html',
+
 })
 export class FeedTogglerComponent implements OnInit {
   @Input('tagName') tagNameProps: string;

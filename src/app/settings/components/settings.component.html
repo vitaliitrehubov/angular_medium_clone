@@ -1,66 +1,60 @@
 <div class="settings-page" *ngIf="user">
-  <div class="container page">
-    <div class="row">
-      <div class="col-md-8 offset-md-2 col-xs-12">
-        <h2 class="text-xs-center">Settings</h2>
+  <h2 class="mat-title">Settings</h2>
 
-        <error-message *ngIf="errors$ | async"></error-message>
+  <error-message *ngIf="errors$ | async"></error-message>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="form">
-          <fieldset>
-            <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                formControlName="image"
-                placeholder="Profile Image Url"
-              />
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                formControlName="username"
-                placeholder="Username"
-              />
-            </fieldset>
-
-            <fieldset class="form-group">
-              <textarea
-                class="form-control form-control-lg"
-                formControlName="bio"
-                placeholder="Short Biography"
-              ></textarea>
-            </fieldset>
-          </fieldset>
-
-          <fieldset class="form-group">
-            <input
-              type="email"
-              class="form-control form-control-lg"
-              formControlName="email"
-              placeholder="Email"
-            />
-          </fieldset>
-
-          <fieldset class="form-group">
-            <input
-              type="password"
-              class="form-control form-control-lg"
-              formControlName="password"
-              placeholder="New Password"
-            />
-          </fieldset>
-
-          <button
-            [disabled]="form.invalid || (isSubmitting$ | async)"
-            type="submit"
-            class="btn btn-lg btn-primary pull-xs-right"
-          >Update Settings</button>
-        </form>
-      </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Profile Image Url:</mat-label>
+        <input matInput formControlName="image" type="text" />
+      </mat-form-field>
     </div>
-  </div>
 
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Username:</mat-label>
+        <input matInput formControlName="username" type="text" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Short Biography:</mat-label>
+        <textarea matInput formControlName="bio"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Email:</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>New Password:</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"/>
+        <button
+          (click)="hide = !hide"
+          mat-icon-button
+          type="button"
+          matSuffix
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      [disabled]="form.invalid || (isSubmitting$ | async)"
+      type="submit"
+    >
+      Update Settings
+    </button>
+  </form>
 </div>

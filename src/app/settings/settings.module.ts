@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { ErrorMessageModule } from "src/app/shared/modules/errorMessage/errorMessage.module";
 
 import { SettingsComponent } from 'src/app/settings/components/settings.component';
@@ -25,6 +28,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
 
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
     ErrorMessageModule
   ]
 })

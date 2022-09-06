@@ -5,6 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
+
 import { AuthService } from "src/app/auth/services/auth.service";
 import { RegisterComponent } from "src/app/auth/components/register/register.component";
 import { LoginComponent } from "src/app/auth/components/login/login.component";
@@ -14,7 +18,6 @@ import { RegisterEffect } from 'src/app/auth/store/effects/register.effect';
 import { UpdateUserEffect } from 'src/app/auth/store/effects/updateUser.effect';
 import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
 import { LogoutEffect } from 'src/app/auth/store/effects/logout.effect';
-import { BackendErrorMessagesModule } from 'src/app/shared/modules/backendErrorMessages/backendErrorMessages.module';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
 import { CanActivateGuard } from "src/app/auth/services/canActivateGuard.service";
 
@@ -52,6 +55,8 @@ const components = [
       LogoutEffect
     ]),
 
+    MatButtonModule,
+    MatInputModule,
     BackendErrorMessagesModule
   ],
   exports: components,

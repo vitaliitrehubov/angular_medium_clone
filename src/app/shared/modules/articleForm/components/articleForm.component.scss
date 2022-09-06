@@ -1,10 +1,19 @@
-input,
-textarea {
-  &.ng-invalid.ng-touched {
-    background-color: lightcoral;
+.article-form {
 
-    &::placeholder {
-      color: #fff;
+  form {
+    width: 400px;
+    margin: 0 auto;
+
+    .form-group {
+      position: relative;
+      margin-bottom: 0.5rem;
+
+      mat-error {
+        position: absolute;
+        bottom: 0;
+      }
     }
   }
+
 }
+

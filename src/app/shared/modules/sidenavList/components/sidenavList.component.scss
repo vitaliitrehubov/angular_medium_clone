@@ -1,0 +1,16 @@
+mat-nav-list {
+  li {
+    padding: 6px 20px;
+
+    a {
+      display: flex;
+      align-items: center;
+      color: #888;
+      font-size: 1rem;
+
+      &.active-link {
+        color: #000;
+      }
+    }
+  }
+}

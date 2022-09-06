@@ -1,3 +1,47 @@
-.nav-link.active-link {
-  color: #000;
+.page-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    color: #5cb85c;
+  }
+
+  .page-nav {
+    display: none;
+  }
+
+  .menu-btn {
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 720px) {
+    .menu-btn {
+      display: none;
+    }
+    .page-nav {
+      display: block;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+
+    li {
+      margin-right: 24px;
+
+      a {
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #888;
+
+        &.active-link {
+          color: #000;
+        }
+      }
+    }
+  }
 }
+

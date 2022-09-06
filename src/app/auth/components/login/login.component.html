@@ -1,46 +1,40 @@
-<div class="auth-page">
-  <div class="container page">
-    <div class="row">
-      <div class="col-md-6 offset-md-3 col-xs-12">
-        <h2 class="text-xs-center">Sign In</h2>
-        <p class="text-xs-center">
-          <a [routerLink]="['/register']">Or create an account.</a>
-        </p>
+<div class="login-page">
+  <h2 class="mat-title">Sign In</h2>
+  <p>
+    <a [routerLink]="['/register']" class="underlined">Or create an account.</a>
+  </p>
 
-        <app-backend-error-messages
-          *ngIf="backendValidationErrors$ | async"
-          [errors]="backendValidationErrors$ | async"
-        ></app-backend-error-messages>
+  <app-backend-error-messages
+    *ngIf="backendValidationErrors$ | async"
+    [errors]="backendValidationErrors$ | async"
+  ></app-backend-error-messages>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-          <div class="form-group">
-            <input
-              type="email"
-              name="email"
-              class="form-control form-control-lg"
-              formControlName="email"
-              placeholder="Email"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="password"
-              name="password"
-              class="form-control form-control-lg"
-              formControlName="password"
-              placeholder="Password"
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-              class="btn btn-lg btn-primary pull-xs-right"
-              [disabled]="loginForm.invalid || (isSubmitting$ | async)"
-            >Sign In</button>
-          </div>
-        </form>
-      </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Email:</mat-label>
+        <input matInput name="email" type="email" formControlName="email" />
+      </mat-form-field>
     </div>
-  </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Password:</mat-label>
+        <input
+          matInput
+          name="password"
+          type="password"
+          formControlName="password"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="loginForm.invalid || (isSubmitting$ | async)"
+      >
+        Sign In
+      </button>
+    </div>
+  </form>
 </div>
-
