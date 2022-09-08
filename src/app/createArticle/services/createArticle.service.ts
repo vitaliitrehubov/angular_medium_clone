@@ -16,10 +16,8 @@ export class CreateArticleService {
   ) {}
 
   createArticle(article: ArticleInputInterface): Observable<ArticleInterface> {
-    const url = environment.apiUrlArticles;
-
     return this.http
-      .post<SaveArticleResponseInterface>(url, { article })
+      .post<SaveArticleResponseInterface>(environment.apiUrlArticles, { article })
       .pipe(map(({ article }: SaveArticleResponseInterface) => article))
   }
 }

@@ -69,10 +69,11 @@ describe('articleForm component', () => {
 
   it('required empty fields should be invalid', () => {
     component.ngOnInit();
-    expect(component.form.get('title').invalid).toBeTruthy();
-    expect(component.form.get('body').invalid).toBeTruthy();
-    expect(component.form.get('description').invalid).toBeTruthy();
-    expect(component.form.get('tagList').invalid).toBeFalsy();
+    const { form } = component;
+    expect(form.get('title').invalid).toBeTruthy();
+    expect(form.get('body').invalid).toBeTruthy();
+    expect(form.get('description').invalid).toBeTruthy();
+    expect(form.get('tagList').invalid).toBeFalsy();
   });
 
   it('should have correct inputs validation', () => {
